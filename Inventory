@@ -1,0 +1,28 @@
+public class Inventory{
+    private Prescription[] prescriptionInventory;
+    private int quantity;
+    private int lowThreshold;
+    private boolean outOfStock;
+    private int returnPeriod;
+    private String[] allowedPersonel;
+    private String supplierInfo;
+
+    public Inventory(){
+        prescriptionInventory = new Prescription[];
+        quantity = 0;
+        lowThreshold = 0;
+        outOfStock = false;
+        returnPeriod = -1;
+        allowedPersonel = String[];
+        supplierInfo = "";
+    }
+    public Inventory(int prescriptionQuantity){
+        prescriptionInventory = new Prescription[prescriptionQuantity];
+        quantity = prescriptionQuantity;
+        lowThreshold = 0;
+        outOfStock = false;
+        returnPeriod = -1;
+        allowedPersonel = String[];
+        supplierInfo = "";
+    }
+}
