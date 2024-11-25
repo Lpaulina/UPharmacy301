@@ -46,9 +46,6 @@ public class InventoryControlTest {
         // Add supplier info for medication
         String supplierInfo = "Adress123, PhoneNumber1234";
         advilMedicationInventory.setSupplierInfo(supplierInfo);
-        System.out.println("HEREEEEEEEEEEEEEEEEEEEEEEEEEEE");
-
-        // testInventory.updateInventory();
 
     }   
 

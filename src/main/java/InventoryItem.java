@@ -29,7 +29,12 @@ public class InventoryItem {
         returnPeriod = -1;
         supplierInfo = "";
     }
-
+    public boolean getOutofStock(){
+        return this.outOfStock;
+    }
+    public int getReturnPeriod(){
+        return this.returnPeriod;
+    }
     public void setQuantity(int amount){
         this.quantity = amount;
     }
@@ -44,6 +49,9 @@ public class InventoryItem {
     
     public void setLowThreshold(int amount){
         this.lowThreshold = amount;
+    }
+    public int getLowThreshold(){
+        return this.lowThreshold;
     }
 
     public void setPrice(Double inputPrice){

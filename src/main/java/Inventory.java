@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class Inventory{
     private int rowID;
     private int cellID;
     private File directory;
+    private File inventoryFile;
     private XSSFWorkbook workbook;
     private XSSFSheet spreadsheet;
 
@@ -43,13 +45,13 @@ public class Inventory{
         // Create a directory for it if it doesn't exist and insert the excel file in it
         directory = new File("C:\\Inventory301");
         if (!directory.exists()) {
-            directory.mkdirs(); // Creates the directory
+            directory.mkdirs(); 
         }
 
         // Saving the file
-        try (FileOutputStream out = new FileOutputStream(new File("C:\\Inventory301\\UPharmacyInventory.xlsx"))) {
+        inventoryFile = new File("C:\\Inventory301\\UPharmacyInventory.xlsx");
+        try (FileOutputStream out = new FileOutputStream(inventoryFile)) {
             workbook.write(out);
-            System.out.println("Excel file written successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,37 +59,52 @@ public class Inventory{
     }
 
     public void addInventoryItem(String name){
-        inventoryItems.put(name, new InventoryItem(name));
+        InventoryItem newItem = new InventoryItem(name);
+        inventoryItems.put(name, newItem);
+
+        // try {
+        //     FileInputStream file = new FileInputStream(inventoryFile);
+        // }
+        // catch (IOException e) {
+        //     e.printStackTrace();
+        // }
+        cellID = 0;
+        XSSFRow newRow = spreadsheet.createRow(rowID++);
+
+        Cell newCell = newRow.createCell(cellID++);
+        newCell.setCellValue(newItem.getMedicationName());
+
+        newCell = newRow.createCell(cellID++);
+        newCell.setCellValue(newItem.getMedicationName());
+
+        newCell = newRow.createCell(cellID++);
+        newCell.setCellValue(newItem.getQuantity());
+
+        newCell = newRow.createCell(cellID++);
+        newCell.setCellValue(newItem.getLowThreshold());
+
+        newCell = newRow.createCell(cellID++);
+        newCell.setCellValue(newItem.getOutofStock());
+
+        newCell = newRow.createCell(cellID++);
+        newCell.setCellValue(newItem.getReturnPeriod());
+
+        newCell = newRow.createCell(cellID++);
+        newCell.setCellValue(newItem.getSupplierInfo());
+
+
+        try { 
+            FileOutputStream out = new FileOutputStream(inventoryFile);
+            workbook.write(out);
+            out.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public InventoryItem getInventoryItem(String name){
         return inventoryItems.get(name);
     }
 
-    public void updateInventory() {
-        XSSFWorkbook workbook = new XSSFWorkbook(); 
-        XSSFSheet spreadsheet = workbook.createSheet("Student Data");
-    
-        Map<String, Object[]> studentData = new TreeMap<>();
-        studentData.put("1", new Object[] {"Roll No", "NAME", "Year"});
-        studentData.put("2", new Object[] {"128", "Aditya", "2nd year"});
-        studentData.put("3", new Object[] {"129", "Narayana", "2nd year"});
-        studentData.put("4", new Object[] {"130", "Mohan", "2nd year"});
-        studentData.put("5", new Object[] {"131", "Radha", "2nd year"});
-        studentData.put("6", new Object[] {"132", "Gopal", "2nd year"});
-    
-        Set<String> keyid = studentData.keySet();
-        int rowid = 0;
-    
-        for (String key : keyid) {
-            XSSFRow row = spreadsheet.createRow(rowid++);
-            Object[] objectArr = studentData.get(key);
-            int cellid = 0;
-            for (Object obj : objectArr) {
-                Cell cell = row.createCell(cellid++);
-                cell.setCellValue((String) obj);
-            }
-        }
-
-    }
 }
