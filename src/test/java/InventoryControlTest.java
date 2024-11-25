@@ -48,7 +48,7 @@ public class InventoryControlTest {
         advilMedicationInventory.setSupplierInfo(supplierInfo);
         System.out.println("HEREEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
-        testInventory.getSpreadSheet();
+        // testInventory.updateInventory();
 
     }   
 

@@ -13,12 +13,12 @@ public class InventoryItem {
 
     public InventoryItem(){
         prescriptionInventory = new ArrayList<String>();
-        medicationName = "None";
+        medicationName = "Medication Name";
         quantity = 0;
         lowThreshold = 0;
         outOfStock = false;
         returnPeriod = -1;
-        supplierInfo = "";
+        supplierInfo = "Supplier Info";
     }
     public InventoryItem(String name){
         prescriptionInventory = new ArrayList<String>();
