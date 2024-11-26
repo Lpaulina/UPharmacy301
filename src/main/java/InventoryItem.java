@@ -29,8 +29,15 @@ public class InventoryItem {
         returnPeriod = -1;
         supplierInfo = "";
     }
+
+    public void setOutofStock(boolean val){
+         this.outOfStock = val;
+    }
     public boolean getOutofStock(){
         return this.outOfStock;
+    }
+    public void setReturnPeriod(int period){
+        this.returnPeriod = period;
     }
     public int getReturnPeriod(){
         return this.returnPeriod;

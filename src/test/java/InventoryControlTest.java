@@ -22,8 +22,7 @@ public class InventoryControlTest {
 
         // Create an Inventory for a medication
         String advilTestMedication = "Advil";
-        testInventory.addInventoryItem(advilTestMedication);
-        InventoryItem advilMedicationInventory = testInventory.getInventoryItem(advilTestMedication);
+        InventoryItem advilMedicationInventory = new InventoryItem(advilTestMedication);
 
         // Add quantity, low threshold, price
         Integer amount = 10;
@@ -47,6 +46,13 @@ public class InventoryControlTest {
         String supplierInfo = "Adress123, PhoneNumber1234";
         advilMedicationInventory.setSupplierInfo(supplierInfo);
 
+        testInventory.addInventoryItem(advilMedicationInventory);
+
+        InventoryItem Item = testInventory.getInventoryItem(advilTestMedication);
+
+        System.out.println(Item.getQuantity());
+
+        testInventory.subtractFromInventory("Advil", 5);
     }   
 
 }
