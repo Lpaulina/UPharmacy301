@@ -128,7 +128,7 @@ public class Inventory {
         return null;
     }
 
-    public void subtractFromInventory(String userRole, InventoryItem item, Integer amount){
+    public void subtractFromInventory(Map<String, Object> prescription,String userRole, InventoryItem item, Integer amount){
         Integer id = item.getID();
         if (!inventoryIDs.contains(id)){
             System.out.println("Item does not exist in inventory.");
@@ -238,9 +238,16 @@ public class Inventory {
         return inventoryIDs;
     }
 
-    // public LocalDate checkExpiration(HashMap<Object, Object> prescription){
-    //     LocalDate expDate = (LocalDate)prescription.get("expDate");
-    // }
+    public boolean checkExpiration(Map<String, Object> prescription){
+        LocalDate expDate = (LocalDate)prescription.get("expDate");
+
+        LocalDate today = LocalDate.now();
+
+        if ((expDate).isAfter(today)){
+            return true;
+        }
+        return false;
+    }
 
     
 }

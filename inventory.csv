@@ -1,0 +1,6 @@
+ID,Medication Name,Price,Quantity,Out of Stock,Supplier Info,Emergency Logs,Disposal Notes
+3,Paracetamol,10.0,6,false,Douglas 781 St,None,None
+4,Aspirina,15.0,33,false,Douglas 781 St,None,None
+2,Vic,2.0,10,false,Douglas 781 St,2024-01-05: Large demand, restock was needed.,None
+5,Bioelectro,20.0,28,false,Douglas 781 St,None,None
+1,Advil,10.0,20,false,AguaPrieta 124 St,2023-20-05: Vendors will not be available at their usual date.,None

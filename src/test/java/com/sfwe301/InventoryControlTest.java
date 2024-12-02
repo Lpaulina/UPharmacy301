@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 import org.junit.Test;
 import java.util.ArrayList;
+import java.util.Map;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,6 +22,12 @@ public class InventoryControlTest {
     Inventory testInventory = new Inventory("UPharmacy");
     public static JSONParser jsonParser = new JSONParser();
     public static JSONArray jsonItems;
+    public static Map<String, Object> nonExpPrescription = Map.of(
+            "expDate", "2023-03-24",
+            "id", 23,
+            "patient", "Paulina",
+            "receivedDate", null
+        );
 
     @BeforeClass
     public static void setUpTestData(){
@@ -105,7 +112,7 @@ public class InventoryControlTest {
         advilMed.setEmergencyLogs((String) newItem.get("emergencyLogs"));
 
         testInventory.addInventoryItem(advilMed);
-        testInventory.subtractFromInventory("manager", advilMed, 4);
+        testInventory.subtractFromInventory(nonExpPrescription,"manager", advilMed, 4);
 
         InventoryItem inventoryMed = testInventory.getInventoryItem(3);
         assertEquals(inventoryMed.getQuantity(), (Integer) 6);
@@ -161,7 +168,6 @@ public class InventoryControlTest {
 
         // With manager permissions quantatiy should have changed
         assertEquals((Integer) 28, inventoryMed.getQuantity());
-
 
     }
 
