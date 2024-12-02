@@ -1,0 +1,50 @@
+{ "items":
+[
+    {
+        "id" : 1,
+        "name": "Advil", 
+        "price" : 10.00, 
+        "quantity": 20, 
+        "outOfStock": false, 
+        "supplierInfo": "AguaPrieta 124 St", 
+        "emergencyLogs": "2023-20-05: Vendors will not be available at their usual date."
+    }, 
+    {
+        "id": 2, 
+        "name": "Vic", 
+        "price" : 2.00, 
+        "quantity": 10, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "2024-01-05: Large demand, restock was needed."
+    },
+    {
+        "id": 3, 
+        "name": "Paracetamol", 
+        "price" : 10.00, 
+        "quantity": 10, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None"
+    },
+    {
+        "id": 4, 
+        "name": "Aspirina", 
+        "price" : 15.00, 
+        "quantity": 30, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None"
+    },
+    {
+        "id": 5, 
+        "name": "Bioelectro", 
+        "price" : 20.00, 
+        "quantity": 25, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None"
+    }
+    
+]
+}
