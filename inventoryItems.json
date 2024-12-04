@@ -44,6 +44,33 @@
         "outOfStock": false, 
         "supplierInfo": "Douglas 781 St",
         "emergencyLogs": "None"
+    },
+    {
+        "id": 6, 
+        "name": "Electrolite", 
+        "price" : 5.00, 
+        "quantity": 32, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None"
+    },
+    {
+        "id": 7, 
+        "name": "Electrolite", 
+        "price" : 5.00, 
+        "quantity": 32, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None"
+    },
+    {
+        "id": 8, 
+        "name": "Electrolite", 
+        "price" : 5.00, 
+        "quantity": 50, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None"
     }
     
 ]

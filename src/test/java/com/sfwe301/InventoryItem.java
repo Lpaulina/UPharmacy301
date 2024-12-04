@@ -1,7 +1,5 @@
 package com.sfwe301;
 
-import java.util.ArrayList;
-
 public class InventoryItem {
     private int id;
     private String medicationName;

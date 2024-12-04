@@ -5,8 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Inventory {
@@ -128,7 +128,7 @@ public class Inventory {
         return null;
     }
 
-    public void subtractFromInventory(Map<String, Object> prescription,String userRole, InventoryItem item, Integer amount){
+    public void subtractFromInventory(String userRole, InventoryItem item, Integer amount){
         Integer id = item.getID();
         if (!inventoryIDs.contains(id)){
             System.out.println("Item does not exist in inventory.");
@@ -239,7 +239,9 @@ public class Inventory {
     }
 
     public boolean checkExpiration(Map<String, Object> prescription){
-        LocalDate expDate = (LocalDate)prescription.get("expDate");
+        LocalDate expDate = LocalDate.parse((String)prescription.get("expDate"));
+
+        // System.out.println(prescription);
 
         LocalDate today = LocalDate.now();
 
@@ -247,6 +249,34 @@ public class Inventory {
             return true;
         }
         return false;
+    }
+
+    public void fillPrescription(Map<String, Object> prescription){
+        if (!checkExpiration(prescription)){
+            System.out.println("Prescription Medication has expired, item cannot be sold.");
+            return;
+        }
+
+        // Record date in which it was filled
+        prescription.put("filledDate", LocalDate.now());
+
+        //  subtract the quantity from inventory
+        subtractFromInventory("manager",(InventoryItem) prescription.get("item"), (Integer)prescription.get("quantity"));
+    }
+
+    public void checkPrescriptionPickup(ArrayList<Map<String, Object>> prescriptions){
+        // This would be run daily
+        for (int i = 0; i < prescriptions.size(); i ++){
+            Map<String, Object> prescription = prescriptions.get(i);
+            LocalDate date = LocalDate.parse(String.valueOf(prescription.get("filledDate")));
+
+            // If 7 day period has been reached then return the quantity to inventory
+            if((Math.abs(ChronoUnit.DAYS.between(LocalDate.now(), date)) + 1) > 7){
+                addToInventory("manager",(InventoryItem)prescription.get("item"), (Integer)prescription.get("quantity"));
+
+                System.out.println("Prescription with ID " + prescription.get("id") + " was not picked up within 7 days, returning item inventory.");
+            }
+        }
     }
 
     
