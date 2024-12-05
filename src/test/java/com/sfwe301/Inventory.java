@@ -5,15 +5,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Inventory {
     private String filePath;
     private String[] headers;
     private int lowThreshold;
-    private boolean autoOrder;
     private ArrayList<Integer> inventoryIDs;
     private static Integer ID_INDEX = 0;
     private static Integer  NAME_INDEX = 1;
@@ -27,7 +26,6 @@ public class Inventory {
     public Inventory(String name){
         lowThreshold = 5;
         inventoryIDs = new ArrayList<Integer>();
-        autoOrder = false;
 
         filePath = "inventory.csv";
         headers = new String[] {"ID", "Medication Name","Price", "Quantity", "Out of Stock", "Supplier Info", "Emergency Logs", "Disposal Notes"};
@@ -163,7 +161,7 @@ public class Inventory {
                     }
                     else if ((item.getQuantity() - amount) <= lowThreshold){
                         // Alert if the item has reached low predefined inventory
-                        System.out.println("Inventory for "+ item.getName() + ". Please place an order.");
+                        System.out.println("Inventory for "+ item.getName() + " is low. Please place an order.");
                         System.out.println("Quantity left: " + values[QUANTITY_INDEX]);
                     }
 
@@ -238,9 +236,46 @@ public class Inventory {
         return inventoryIDs;
     }
 
-    // public LocalDate checkExpiration(HashMap<Object, Object> prescription){
-    //     LocalDate expDate = (LocalDate)prescription.get("expDate");
-    // }
+    public boolean checkExpiration(Map<String, Object> prescription){
+        LocalDate expDate = LocalDate.parse((String)prescription.get("expDate"));
+
+        // System.out.println(prescription);
+
+        LocalDate today = LocalDate.now();
+
+        if ((expDate).isAfter(today)){
+            return true;
+        }
+        return false;
+    }
+
+    public void fillPrescription(Map<String, Object> prescription){
+        if (!checkExpiration(prescription)){
+            System.out.println("Prescription Medication has expired, item cannot be sold.");
+            return;
+        }
+
+        // Record date in which it was filled
+        prescription.put("filledDate", LocalDate.now());
+
+        //  subtract the quantity from inventory
+        subtractFromInventory("manager",(InventoryItem) prescription.get("item"), (Integer)prescription.get("quantity"));
+    }
+
+    public void checkPrescriptionPickup(ArrayList<Map<String, Object>> prescriptions){
+        // This would be run daily
+        for (int i = 0; i < prescriptions.size(); i ++){
+            Map<String, Object> prescription = prescriptions.get(i);
+            LocalDate date = LocalDate.parse(String.valueOf(prescription.get("filledDate")));
+
+            // If 7 day period has been reached then return the quantity to inventory
+            if((Math.abs(ChronoUnit.DAYS.between(LocalDate.now(), date)) + 1) > 7){
+                addToInventory("manager",(InventoryItem)prescription.get("item"), (Integer)prescription.get("quantity"));
+
+                System.out.println("Prescription with ID " + prescription.get("id") + " was not picked up within 7 days, returning item inventory.");
+            }
+        }
+    }
 
     
 }

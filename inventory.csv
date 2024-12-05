@@ -1,0 +1,14 @@
+ID,Medication Name,Price,Quantity,Out of Stock,Supplier Info,Emergency Logs,Disposal Notes
+8,Acutane,5.0,60,false,Douglas 781 St,None,None
+9,Tylonol,5.0,4,false,Douglas 781 St,None,None
+6,Electrolite,5.0,27,false,Douglas 781 St,None,None
+4,Aspirina,15.0,33,false,Douglas 781 St,None,None
+2,Vic,2.0,10,false,Douglas 781 St,None,None
+11,Peptobismol,5.0,10,false,Douglas 781 St,None,Throw in proper container.
+12,Vaporub,5.0,15,false,Douglas 781 St,10-31-2024: Restock needed.,None
+5,Bioelectro,20.0,28,false,Douglas 781 St,None,None
+10,Treda,5.0,0,true,Douglas 781 St,None,None
+13,Tempra,5.0,15,false,Phone #: 321-282-2938,None,None
+7,Ibuprophen,5.0,32,false,Douglas 781 St,None,None
+1,Advil,10.0,20,false,AguaPrieta 124 St,None,None
+3,Paracetamol,10.0,6,false,Douglas 781 St,None,None
