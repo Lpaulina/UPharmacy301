@@ -13,7 +13,6 @@ public class Inventory {
     private String filePath;
     private String[] headers;
     private int lowThreshold;
-    private boolean autoOrder;
     private ArrayList<Integer> inventoryIDs;
     private static Integer ID_INDEX = 0;
     private static Integer  NAME_INDEX = 1;
@@ -27,7 +26,6 @@ public class Inventory {
     public Inventory(String name){
         lowThreshold = 5;
         inventoryIDs = new ArrayList<Integer>();
-        autoOrder = false;
 
         filePath = "inventory.csv";
         headers = new String[] {"ID", "Medication Name","Price", "Quantity", "Out of Stock", "Supplier Info", "Emergency Logs", "Disposal Notes"};
@@ -163,7 +161,7 @@ public class Inventory {
                     }
                     else if ((item.getQuantity() - amount) <= lowThreshold){
                         // Alert if the item has reached low predefined inventory
-                        System.out.println("Inventory for "+ item.getName() + ". Please place an order.");
+                        System.out.println("Inventory for "+ item.getName() + " is low. Please place an order.");
                         System.out.println("Quantity left: " + values[QUANTITY_INDEX]);
                     }
 

@@ -49,9 +49,30 @@ public class InventoryControlTest {
     public static Map<String, Object> expPrescription;
 
 
+    public InventoryItem contructItem(Integer index){
+        JSONObject newItem = (JSONObject) jsonItems.get(index);
+        InventoryItem med = new InventoryItem();
+
+        med.setID(((Long) newItem.get("id")).intValue()); // Cast to int
+        med.setName((String) newItem.get("name"));
+        med.setPrice((Double) newItem.get("price"));
+        med.setQuantity(((Long) newItem.get("quantity")).intValue());
+        med.setOutofStock((boolean) newItem.get("outOfStock"));
+        med.setSupplierInfo((String) newItem.get("supplierInfo"));
+        med.setEmergencyLogs((String) newItem.get("emergencyLogs"));
+        med.setEmergencyLogs((String) newItem.get("disposalNotes"));
+
+        return med;
+    }
 
     @BeforeClass
     public static void setUpTestData(){
+        
+        String filePath = "inventory.csv";
+        File file = new File(filePath);
+        if (file.exists()){
+            file.delete();
+        }
         try (FileReader reader = new FileReader("inventoryItems.json")){
 
             JSONObject items = (JSONObject) jsonParser.parse(reader);
@@ -71,23 +92,14 @@ public class InventoryControlTest {
         
         File file = new File("inventory.csv");
         assertTrue(file.exists());
+        assertNotEquals(inv, null);
         
     }
 
     @Test
     public void insertInventoryItems(){
-        // Inventory testInventory = new Inventory("UPharmacy");
-        // setUpTestData();
-        JSONObject newItem = (JSONObject) jsonItems.get(0);
-        InventoryItem advilMed = new InventoryItem();
 
-        advilMed.setID(((Long) newItem.get("id")).intValue()); // Cast to int
-        advilMed.setName((String) newItem.get("name"));
-        advilMed.setPrice((Double) newItem.get("price"));
-        advilMed.setQuantity(((Long) newItem.get("quantity")).intValue());
-        advilMed.setOutofStock((boolean) newItem.get("outOfStock"));
-        advilMed.setSupplierInfo((String) newItem.get("supplierInfo"));
-        advilMed.setEmergencyLogs((String) newItem.get("emergencyLogs"));
+        InventoryItem advilMed = contructItem(0);
 
         testInventory.addInventoryItem(advilMed);
         InventoryItem advilInventory = testInventory.getInventoryItem(1);
@@ -97,18 +109,8 @@ public class InventoryControlTest {
     }
     @Test
     public void duplicateItems(){
-        // Inventory testInventory = new Inventory("UPharmacy");
-        // setUpTestData();
-        JSONObject newItem = (JSONObject) jsonItems.get(1);
-        InventoryItem advilMed = new InventoryItem();
 
-        advilMed.setID(((Long) newItem.get("id")).intValue()); // Cast to int
-        advilMed.setName((String) newItem.get("name"));
-        advilMed.setPrice((Double) newItem.get("price"));
-        advilMed.setQuantity(((Long) newItem.get("quantity")).intValue());
-        advilMed.setOutofStock((boolean) newItem.get("outOfStock"));
-        advilMed.setSupplierInfo((String) newItem.get("supplierInfo"));
-        advilMed.setEmergencyLogs((String) newItem.get("emergencyLogs"));
+        InventoryItem advilMed = contructItem(1);
 
         testInventory.addInventoryItem(advilMed);
         // Duplicate
@@ -119,19 +121,9 @@ public class InventoryControlTest {
     }
 
     @Test
-    public void addInventory(){
-        // Inventory testInventory = new Inventory("UPharmacy");
-        // setUpTestData();
-        JSONObject newItem = (JSONObject) jsonItems.get(2);
-        InventoryItem advilMed = new InventoryItem();
+    public void subtractInventory(){
 
-        advilMed.setID(((Long) newItem.get("id")).intValue()); // Cast to int
-        advilMed.setName((String) newItem.get("name"));
-        advilMed.setPrice((Double) newItem.get("price"));
-        advilMed.setQuantity(((Long) newItem.get("quantity")).intValue());
-        advilMed.setOutofStock((boolean) newItem.get("outOfStock"));
-        advilMed.setSupplierInfo((String) newItem.get("supplierInfo"));
-        advilMed.setEmergencyLogs((String) newItem.get("emergencyLogs"));
+        InventoryItem advilMed = contructItem(2);
 
         testInventory.addInventoryItem(advilMed);
         testInventory.subtractFromInventory("manager", advilMed, 4);
@@ -143,18 +135,8 @@ public class InventoryControlTest {
     }
     @Test
     public void restockInventoryItem(){
-        // Inventory testInventory = new Inventory("UPharmacy");
-        // setUpTestData();
-        JSONObject newItem = (JSONObject) jsonItems.get(3);
-        InventoryItem advilMed = new InventoryItem();
 
-        advilMed.setID(((Long) newItem.get("id")).intValue()); // Cast to int
-        advilMed.setName((String) newItem.get("name"));
-        advilMed.setPrice((Double) newItem.get("price"));
-        advilMed.setQuantity(((Long) newItem.get("quantity")).intValue());
-        advilMed.setOutofStock((boolean) newItem.get("outOfStock"));
-        advilMed.setSupplierInfo((String) newItem.get("supplierInfo"));
-        advilMed.setEmergencyLogs((String) newItem.get("emergencyLogs"));
+        InventoryItem advilMed = contructItem(3);
 
         testInventory.addInventoryItem(advilMed);
         testInventory.addToInventory("manager",advilMed, 3);
@@ -166,17 +148,8 @@ public class InventoryControlTest {
 
     @Test
     public void inventorySecurity(){
-        // Using inventory item with id 1 as it should already be in inventory
-        JSONObject newItem = (JSONObject) jsonItems.get(4);
-        InventoryItem med = new InventoryItem();
 
-        med.setID(((Long) newItem.get("id")).intValue()); // Cast to int
-        med.setName((String) newItem.get("name"));
-        med.setPrice((Double) newItem.get("price"));
-        med.setQuantity(((Long) newItem.get("quantity")).intValue());
-        med.setOutofStock((boolean) newItem.get("outOfStock"));
-        med.setSupplierInfo((String) newItem.get("supplierInfo"));
-        med.setEmergencyLogs((String) newItem.get("emergencyLogs"));
+        InventoryItem med = contructItem(4);
         
         testInventory.addInventoryItem(med);
         testInventory.addToInventory("pharmacist",med, 3);
@@ -190,21 +163,12 @@ public class InventoryControlTest {
 
         // With manager permissions quantatiy should have changed
         assertEquals((Integer) 28, inventoryMed.getQuantity());
-
     }
 
     @Test
     public void fillPrescription(){
-        JSONObject newItem = (JSONObject) jsonItems.get(5);
-        InventoryItem med = new InventoryItem();
 
-        med.setID(((Long) newItem.get("id")).intValue()); // Cast to int
-        med.setName((String) newItem.get("name"));
-        med.setPrice((Double) newItem.get("price"));
-        med.setQuantity(((Long) newItem.get("quantity")).intValue());
-        med.setOutofStock((boolean) newItem.get("outOfStock"));
-        med.setSupplierInfo((String) newItem.get("supplierInfo"));
-        med.setEmergencyLogs((String) newItem.get("emergencyLogs"));
+        InventoryItem med = contructItem(5);
 
         testInventory.addInventoryItem(med);
 
@@ -222,23 +186,15 @@ public class InventoryControlTest {
 
     @Test
     public void fillExpPrescription(){
-        JSONObject newItem = (JSONObject) jsonItems.get(6);
-        InventoryItem med = new InventoryItem();
 
-        med.setID(((Long) newItem.get("id")).intValue()); // Cast to int
-        med.setName((String) newItem.get("name"));
-        med.setPrice((Double) newItem.get("price"));
-        med.setQuantity(((Long) newItem.get("quantity")).intValue());
-        med.setOutofStock((boolean) newItem.get("outOfStock"));
-        med.setSupplierInfo((String) newItem.get("supplierInfo"));
-        med.setEmergencyLogs((String) newItem.get("emergencyLogs"));
+        InventoryItem med = contructItem(6);
 
         testInventory.addInventoryItem(med);
 
         expPrescription.put("item",med);
         expPrescription.put("quantity", 5);
 
-        testInventory.fillPrescription(nonExpPrescription);
+        testInventory.fillPrescription(expPrescription);
 
         InventoryItem inventoryMed = testInventory.getInventoryItem(7);
 
@@ -248,17 +204,10 @@ public class InventoryControlTest {
 
     @Test
     public void prescriptionNotPickedUp(){
-        JSONObject newItem = (JSONObject) jsonItems.get(7);
-        InventoryItem med = new InventoryItem();
+     
         ArrayList<Map<String, Object>> prescriptions = new ArrayList<>();
 
-        med.setID(((Long) newItem.get("id")).intValue()); // Cast to int
-        med.setName((String) newItem.get("name"));
-        med.setPrice((Double) newItem.get("price"));
-        med.setQuantity(((Long) newItem.get("quantity")).intValue());
-        med.setOutofStock((boolean) newItem.get("outOfStock"));
-        med.setSupplierInfo((String) newItem.get("supplierInfo"));
-        med.setEmergencyLogs((String) newItem.get("emergencyLogs"));
+        InventoryItem med = contructItem(7);
 
         testInventory.addInventoryItem(med);
         
@@ -282,6 +231,75 @@ public class InventoryControlTest {
 
         // Prescription was expired and therefore inventory shouldn't decrease
         assertEquals((Integer)60, inventoryMed.getQuantity());
+    }
+
+    @Test
+    public void reachLowThreshold(){
+
+        InventoryItem med = contructItem(8);
+
+        testInventory.addInventoryItem(med);
+        testInventory.subtractFromInventory("manager", med, 6);
+
+        InventoryItem inventoryMed = testInventory.getInventoryItem(9);
+        assertEquals(inventoryMed.getQuantity(), (Integer) 4);
+
+    }
+
+    @Test
+    public void reachOutOfStock(){
+
+        InventoryItem med = contructItem(9);
+
+        testInventory.addInventoryItem(med);
+        testInventory.subtractFromInventory("manager", med, 10);
+
+        InventoryItem inventoryMed = testInventory.getInventoryItem(10);
+        assertEquals(inventoryMed.getQuantity(), (Integer) 0);
+        assertTrue(inventoryMed.getOutOfStock());
+
+    }
+
+    @Test
+    public void logDisposalNotes(){
+
+        InventoryItem med = contructItem(10);
+
+        med.setDisposalNotes("Throw in proper container.");
+
+        testInventory.addInventoryItem(med);
+
+        InventoryItem inventoryMed = testInventory.getInventoryItem(11);
+        assertEquals("Throw in proper container.", String.valueOf(inventoryMed.getDisposalNotes()));
+
+    }
+
+    @Test
+    public void logEmergencyMedicationNotes(){
+
+        InventoryItem med = contructItem(11);
+
+        med.setEmergencyLogs("10-31-2024: Restock needed.");
+
+        testInventory.addInventoryItem(med);
+
+        InventoryItem inventoryMed = testInventory.getInventoryItem(12);
+        assertEquals("10-31-2024: Restock needed.", String.valueOf(inventoryMed.getEmergencyLogs()));
+
+    }
+
+    @Test
+    public void logSupplierInfo(){
+
+        InventoryItem med = contructItem(12);
+
+        med.setSupplierInfo("Phone #: 321-282-2938");
+
+        testInventory.addInventoryItem(med);
+
+        InventoryItem inventoryMed = testInventory.getInventoryItem(13);
+        assertEquals("Phone #: 321-282-2938", String.valueOf(inventoryMed.getSupplierInfo()));
+
     }
 
 }
