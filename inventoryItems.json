@@ -7,7 +7,8 @@
         "quantity": 20, 
         "outOfStock": false, 
         "supplierInfo": "AguaPrieta 124 St", 
-        "emergencyLogs": "2023-20-05: Vendors will not be available at their usual date."
+        "emergencyLogs": "2023-20-05: Vendors will not be available at their usual date.",
+        "disposalNotes": "None"
     }, 
     {
         "id": 2, 
@@ -16,7 +17,8 @@
         "quantity": 10, 
         "outOfStock": false, 
         "supplierInfo": "Douglas 781 St",
-        "emergencyLogs": "2024-01-05: Large demand, restock was needed."
+        "emergencyLogs": "2024-01-05: Large demand, restock was needed.",
+        "disposalNotes": "None"
     },
     {
         "id": 3, 
@@ -25,7 +27,8 @@
         "quantity": 10, 
         "outOfStock": false, 
         "supplierInfo": "Douglas 781 St",
-        "emergencyLogs": "None"
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
     },
     {
         "id": 4, 
@@ -34,7 +37,8 @@
         "quantity": 30, 
         "outOfStock": false, 
         "supplierInfo": "Douglas 781 St",
-        "emergencyLogs": "None"
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
     },
     {
         "id": 5, 
@@ -43,7 +47,8 @@
         "quantity": 25, 
         "outOfStock": false, 
         "supplierInfo": "Douglas 781 St",
-        "emergencyLogs": "None"
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
     },
     {
         "id": 6, 
@@ -52,25 +57,78 @@
         "quantity": 32, 
         "outOfStock": false, 
         "supplierInfo": "Douglas 781 St",
-        "emergencyLogs": "None"
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
     },
     {
         "id": 7, 
-        "name": "Electrolite", 
+        "name": "Ibuprophen", 
         "price" : 5.00, 
         "quantity": 32, 
         "outOfStock": false, 
         "supplierInfo": "Douglas 781 St",
-        "emergencyLogs": "None"
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
     },
     {
         "id": 8, 
-        "name": "Electrolite", 
+        "name": "Acutane", 
         "price" : 5.00, 
         "quantity": 50, 
         "outOfStock": false, 
         "supplierInfo": "Douglas 781 St",
-        "emergencyLogs": "None"
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
+    },
+    {
+        "id": 9, 
+        "name": "Tylonol", 
+        "price" : 5.00, 
+        "quantity": 10, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
+    },
+    {
+        "id": 10, 
+        "name": "Treda", 
+        "price" : 5.00, 
+        "quantity": 10, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
+    },
+    {
+        "id": 11, 
+        "name": "Peptobismol", 
+        "price" : 5.00, 
+        "quantity": 10, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
+    },
+    {
+        "id": 12, 
+        "name": "Vaporub", 
+        "price" : 5.00, 
+        "quantity": 15, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
+    },
+    {
+        "id": 13, 
+        "name": "Tempra", 
+        "price" : 5.00, 
+        "quantity": 15, 
+        "outOfStock": false, 
+        "supplierInfo": "Douglas 781 St",
+        "emergencyLogs": "None",
+        "disposalNotes": "None"
     }
     
 ]
