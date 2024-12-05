@@ -1,0 +1,5 @@
+Patient ID, Feedback date, Prescription error, cause of error, corrective action taken
+P001, 2023-11-01, Incorrect dosage, Wrong dosage of medication dispensed., Corrected dosage and re-dispensed medication.
+P002, 2023-11-05, Incorrect medication, Patient was prescribed the wrong medication., Medication was replaced with the correct one and patient was informed.
+P003, 2023-11-07, Missing instructions, Pharmacist forgot to include instructions for usage., Patient was called and proper instructions were provided.
+P004, 2023-11-10, Expired medication, Expired medication was dispensed., Medication was replaced and the patient was offered a discount on the next purchase.
