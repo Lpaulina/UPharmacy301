@@ -1,0 +1,16 @@
+Transaction ID, Time, Medicine Name, Dose Price, Dose Cost, Quantity Sold  
+1 9:30 Advil 10.00 2.50 1  
+2 9:45 Ibuprofen 8.00 1.50 3  
+3 9:50 Penicillin 15.00 4.00 2  
+4 10:22 Lisinopril 20.00 5.50 1  
+5 10:45 Advil 10.00 2.50 1  
+6 10:50 Ibuprofen 8.00 1.50 3  
+7 11:45 Advil 10.00 2.50 4  
+8 12:04 Lisinopril 20.00 5.50 1  
+9 12:42 Penicillin 15.00 4.00 2  
+10 1:20 Ibuprofen 8.00 1.50 3  
+11 1:41 Advil 10.00 2.50 1  
+12 2:18 Penicillin 15.00 4.00 3  
+13 3:00 Lisinopril 20.00 5.50 2  
+14 3:15 Advil 10.00 2.50 2  
+15 3:30 Advil 10.00 2.50 2

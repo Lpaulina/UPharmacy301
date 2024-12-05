@@ -1,0 +1,4 @@
+Metric Name, Metric Value, Status
+System Uptime, 99.99%, OK
+Response Time, 2.5s, OK
+CPU Usage, 85%, Warning

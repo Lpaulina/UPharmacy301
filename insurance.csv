@@ -1,0 +1,5 @@
+Patient ID, Claim Date, Insurance Claim ID, Claim Description, Claim Amount, Claim Status
+P001, 2023-10-15, IC-1001, Claim for prescription medication coverage, 50.00, Approved
+P002, 2023-10-20, IC-1002, Claim for prescription medication coverage, 70.00, Denied
+P003, 2023-11-05, IC-1003, Claim for prescribed over-the-counter items, 30.00, Approved
+P004, 2023-11-07, IC-1004, Claim for prescription refill, 45.00, Pending
